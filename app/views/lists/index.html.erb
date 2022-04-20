@@ -1,5 +1,9 @@
-<h1>Lists of Movies</h1>
+<h1>Lists of lists</h1>
 
+<ul>
 <% @lists.each do |list| %>
-  <%= list.name %>
+  <li><%= link_to list.name, list_path(list) %></li>
 <% end %>
+</ul>
+
+<%= link_to '+ Create a list', new_list_path, class: "btn btn-outline-primary"%>

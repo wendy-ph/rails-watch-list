@@ -1,1 +1,7 @@
 <h1><%= @list.name %></h1>
+
+<h2>Bookmarks</h2>
+
+
+<%= link_to 'Back to lists', lists_path %>
+<%= link_to '+ Bookmark', new_list_bookmark_path(@list) %>
