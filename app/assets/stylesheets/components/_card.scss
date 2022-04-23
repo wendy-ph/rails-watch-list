@@ -16,3 +16,13 @@
 a {
   text-decoration: none;
 }
+
+.card-text-truncate-container {
+  width: 250px;
+}
+.card-text-truncate-container p {
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

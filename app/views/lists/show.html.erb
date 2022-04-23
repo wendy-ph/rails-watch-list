@@ -13,29 +13,58 @@
 
 
   <div>
-    <h1><%= @list.name %></h1>
+    <h1 class="m-4 border-bottom"><%= @list.name %></h1>
   </div>
 
 <div class="container">
-  <% @bookmarks.each do |bookmark| %>
-    <div>
-      <%= bookmark.movie.title %>
-      <%= image_tag bookmark.movie.poster_url %>
-      <%= bookmark.movie.overview %>
-      <%= bookmark.comment  %>
-    </div>
-  <% end %>
+
+  <div class="row row-cols-4">
+    <% @bookmarks.each do |bookmark| %>
+      <div class ="col card-text-truncate-container">
+        <div class="card h-100 mb-3 border-light ">
+          <%= image_tag bookmark.movie.poster_url, class: "card-img-top", height: "120px" %>
+          <h5 class="card-title m-2 text-wrap"><%= bookmark.movie.title %></h5>
+
+          <p class="card-text card-text-truncate-container"><%= bookmark.movie.overview %></p>
+
+        </div>
+        <div class="card-footer">
+          Rating: <%= bookmark.movie.rating %>/10
+        </div>
+      </div>
+    <% end %>
+  </div>
 
 
   <%= link_to 'Back to lists', root_path %>
 
+ <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMovieModal">
+      Add Movie
+  </button>
 
-  <h3>Add a movie</h3>
+<!-- Modal -->
+  <div class="modal fade" id="addMovieModal" tabindex="-1" aria-labelledby="addMovieModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addMovieModalLabel">Add Movie</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+             <%= simple_form_for [ @list, @bookmark ] do |f| %>
+                <%= f.input :comment %>
+                <%= f.association :movie %>
+                <%= f.submit "Add Movie"%>
 
-  <%= simple_form_for [ @list, @bookmark ] do |f| %>
-    <%= f.input :comment %>
-    <%= f.association :movie %>
-    <%= f.submit "Add Movie"%>
-  <% end %>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <%= f.submit "Add movie"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
 
 </div>
