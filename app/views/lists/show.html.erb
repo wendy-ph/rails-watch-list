@@ -1,4 +1,11 @@
-<h1><%= @list.name %></h1>
+<%# ------------------- Banner section ----------------------- %>
+<div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+ asset_url('<%= "#{@list.name.downcase}.png" %>')">
+  <div class= "container">
+    <h1><%= @list.name %></h1>
+  </div>
+</div>
+
 
 <h2>Movies</h2>
 
@@ -13,7 +20,7 @@
 <% end %>
 
 
-<%= link_to 'Back to lists', lists_path %>
+<%= link_to 'Back to lists', root_path %>
 
 
 <h3>Add a movie</h3>
